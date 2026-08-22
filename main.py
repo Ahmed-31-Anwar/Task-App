@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from flask_sqlalchemy import SQLAlchemy, SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
@@ -46,9 +46,3 @@ def add_task():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
-
-
-

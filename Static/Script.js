@@ -32,6 +32,3 @@ async function loadTasks() {
 }
 
 loadTasks();
-
-
-

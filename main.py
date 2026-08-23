@@ -1,29 +1,24 @@
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-import os
 
 app = Flask(__name__)
 
-# Neon PostgreSQL database
-DATABASE_URL = os.environ.get("DATABASE_URL")
-
-app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
 db = SQLAlchemy(app)
-
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
 
+with app.app_context():
+    db.create_all()
 
 @app.route("/")
 def home():
     return render_template("Index.html")
 
-
-@app.route("/tasks", methods=["GET"])
+@app.route("/tasks", methods = ["GET"])
 def get_tasks():
     tasks = Task.query.all()
 
@@ -31,15 +26,14 @@ def get_tasks():
         {
             "id": task.id,
             "title": task.title
-        }
+    }
         for task in tasks
     ])
 
-
-@app.route("/tasks", methods=["POST"])
+@app.route("/tasks", methods = ["POST"])
 def add_task():
-    data = request.get_json()
 
+    data = request.get_json()
     new_task = Task(title=data["title"])
 
     db.session.add(new_task)
@@ -49,7 +43,6 @@ def add_task():
         "id": new_task.id,
         "title": new_task.title
     })
-
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,9 +1,12 @@
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-
+import os
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
+    'DATABASE_URL',
+    'sqlite:///tasks.db'
+)
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
 db = SQLAlchemy(app)
 
@@ -11,13 +14,12 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
 
-# with app.app_context():
-#    db.create_all()
+with app.app_context():
+    db.create_all()
 
 @app.route("/")
 def home():
-    return "Task App is running!"
-   # return render_template("Index.html")
+    return render_template("Index.html")
 
 @app.route("/tasks", methods = ["GET"])
 def get_tasks():

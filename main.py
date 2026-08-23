@@ -1,9 +1,13 @@
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///tasks.db"
+# Neon PostgreSQL database
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
@@ -12,10 +16,6 @@ db = SQLAlchemy(app)
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
-
-
-with app.app_context():
-    db.create_all()
 
 
 @app.route("/")
@@ -34,6 +34,7 @@ def get_tasks():
         }
         for task in tasks
     ])
+
 
 @app.route("/tasks", methods=["POST"])
 def add_task():

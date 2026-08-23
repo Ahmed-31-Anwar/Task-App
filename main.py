@@ -16,7 +16,8 @@ class Task(db.Model):
 
 @app.route("/")
 def home():
-    return render_template("Index.html")
+    return "Task App is running!"
+   # return render_template("Index.html")
 
 @app.route("/tasks", methods = ["GET"])
 def get_tasks():

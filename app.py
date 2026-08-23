@@ -35,7 +35,6 @@ def get_tasks():
         for task in tasks
     ])
 
-
 @app.route("/tasks", methods=["POST"])
 def add_task():
     data = request.get_json()

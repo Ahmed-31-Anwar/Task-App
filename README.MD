@@ -1,6 +1,6 @@
 # Task App
 
-A simple full-stack task management application built with Python, Flask, SQLite, HTML, CSS, and JavaScript.
+A simple full-stack task management application built with Python, Flask, HTML, CSS, JavaScript, SQLite, and Neon PostgreSQL.
 
 ---
 
@@ -8,13 +8,13 @@ A simple full-stack task management application built with Python, Flask, SQLite
 
 This project was developed as a practical introduction to full-stack web development, version control and deployment.
 
-The application brings together a frontend, backend, and database to create a complete web application. The frontend is built using HTML, CSS, and JavaScript, while Python and Flask handle the backend logic. SQLite is used to store the application's task data.
+The application brings together a frontend, backend, and database to create a complete web application. The frontend is built using HTML, CSS, and JavaScript, while Python and Flask handle the backend logic. SQLite is used during local development, while Neon PostgreSQL is used as the persistent database for the deployed application.
 
 The main focus of the project was to understand how these different technologies work together as one application rather than learning each component separately.
 
-Alongside building the application, I also worked through a basic professional development workflow using Git and GitHub. This included ceating and managing a repository, making commits, working with branches, pushing and pulling changes, creating Pull Requests, reviewing changes, and merging a feature back into the main branch.
+Alongside building the application, I also worked through a basic professional development workflow using Git and GitHub. This included creating and managing a repository, making commits, working with branches, pushing and pulling changes, creating Pull Requests, reviewing changes, and merging a feature back into the main branch.
 
-The project was developed and tested locally using PyCharm, with the GitHub repository integrated with Vercel as part of the deployment workflow.
+The project was developed and tested locally using PyCharm, with GitHub used for version control and Vercel used for deployment. Neon PostgreSQL is used as the persistent database for the deployed application.
 
 ---
 
@@ -24,7 +24,7 @@ The project was created with the following goals:
 - Build a functional full-stack web application.
 - Understand how the frontend, backend, and database work together.
 - Learn how Flask is used to build the backend.
-- Use SQLite to store application data.
+- Use SQLite for local development and Neon PostgreSQL for the deployed application.
 - Organize the project using a clear folder structure
 - Learn the basics of Git version control
 - Understand how GitHub is used to manage the repository
@@ -45,7 +45,7 @@ The application provides a simple interface for managing tasks while demonstrati
 ### Application Features
 - Create and manage tasks through the web interface.
 - Display task information within the application.
-- Store task data using SQLite
+- Store task data using SQLite during local development and Neon PostgreSQL when deployed.
 - Process application requests through Flask.
 - Use JavaScript for frontend interactions.
 - Run the application locally through Flask. 
@@ -77,7 +77,8 @@ The project also demonstrates the development process used to manage the applica
 | HTML       | Structure of the web interface      |
 | CSS        | Styling and layout of the interface |
 | JavaScript | Frontend interactions and behaviour |
-| SQLite     | Database for storing task data      |
+| SQLite     | Local development database          |
+| Neon PostgreSQL | Persistent database for deployment |
 | Git        | Version control                     |
 | GitHub     | Remote repository and collaboration |
 | PyCharm    | Development environment             |
@@ -101,8 +102,8 @@ Task App/
 │   ├─ style.css
 │   └─ script.js
 │
-├─ template/
-│   └─ index.html
+├─ templates/
+│   └─ Index.html
 │ 
 ├─ instance/
 │   └─ tasks.db
@@ -145,7 +146,7 @@ Contains application specific files and local data used by the project.
 
 ### instance/tasks.db
 
-The SQLite database used to store task information and maintain the application's data.
+The local SQLite database used during development to store task information. The deployed application uses Neon PostgreSQL as its persistent database.
 
 ### .gitignore
 
@@ -172,7 +173,7 @@ HTML provides the structure of the webpage, CSS controls its appearance and layo
 
 The backend is built using Python and Flask.
 
-Flask receives requests from the frontend, processes the requited application logic, communicates with the database when necessary, and returns the appropriate response.
+Flask receives requests from the frontend, processes the required application logic, communicates with the database when necessary, and returns the appropriate response.
 
 ### Database
 
@@ -213,7 +214,7 @@ This flow shows how information moves between the user interface, Flask backend,
 
 ## Running the Application Locally
 
-The project can be developed and tested locally using PyCharm and the Flask development sever.
+The project can be developed and tested locally using PyCharm and the Flask development server.
 
 ### Requirements
 
@@ -229,7 +230,7 @@ If Flask is not installed, install it from the PyCharm terminal using:
 pip install flask
 ```
 
-Once the Flask server is running, open the local address shown in the terminal, usually http://localhost:500.
+Once the Flask server is running, open the local address shown in the terminal, usually http://localhost:5000.
 
 
 ### Deployment
@@ -271,7 +272,7 @@ The development workflow follows a simple process:
 1. Make changes to the project locally.
 2. Check the changes using Git.
 3. Create a Git commit to record the changes.
-4. Push the changes to the GitHub repository
+4. Push the changes to the GitHub repository.
 5. Create a Pull Request when working through a separate branch.
 6. Review and merge the Pull Request into the main branch.
 7. Keep the local and remote repositories synchronized.
